@@ -1,15 +1,17 @@
 class Solution:
     def sumAndMultiply(self, n: int) -> int:
-        digits = []
+        x = 0
+        digit_sum = 0
+        place = 1
 
-        for ch in str(n):
-            if ch != '0':
-                digits.append(ch)
+        # Extract digits from right to left
+        while n > 0:
+            digit = n % 10
+            n //= 10
 
-        if not digits:
-            return 0
-
-        x = int("".join(digits))
-        digit_sum = sum(int(d) for d in digits)
+            if digit != 0:
+                x = digit * place + x
+                place *= 10
+                digit_sum += digit
 
         return x * digit_sum
